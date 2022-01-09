@@ -20,7 +20,7 @@
     </header>
     <div class="app-container">
         <div class="buttons">
-            <button onclick="loadClient()">load</button>
+            <button onclick="authenticate().then(loadClient)">load</button>
             <button onclick="execute()">execute</button>
         </div>
     </div>
