@@ -8,8 +8,7 @@ console.log("JS v1.0.0.1 running");
    * See instructions for running APIs Explorer code samples locally:
    * https://developers.google.com/explorer-help/guides/code_samples#javascript
    */
-//Este no funca:
-/*
+
      function authenticate() {
         return gapi.auth2.getAuthInstance()
             .signIn({scope: "https://www.googleapis.com/auth/youtube"})
@@ -55,13 +54,13 @@ console.log("JS v1.0.0.1 running");
       gapi.load("client:auth2", function() {
         gapi.auth2.init({client_id: "38164434341-tiliciovo1hrej80rr815k4bq59fi09g.apps.googleusercontent.com"});
       });
-      */
+      
 
       /**
    * Sample JavaScript code for youtube.liveBroadcasts.insert
    * See instructions for running APIs Explorer code samples locally:
    * https://developers.google.com/explorer-help/guides/code_samples#javascript
-   */
+   
 
 function loadClient() {
   gapi.client.setApiKey("38164434341-tiliciovo1hrej80rr815k4bq59fi09g.apps.googleusercontent.com");
@@ -101,4 +100,4 @@ function execute() {
             },
             function(err) { console.error("Execute error", err); });
 }
-gapi.load("client");
+gapi.load("client");*/
