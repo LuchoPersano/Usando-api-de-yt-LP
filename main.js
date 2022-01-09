@@ -28,8 +28,8 @@ console.log("JS v1.0.0.1 running");
           "resource": {
             "snippet": {
               "title": "Test broadcast",
-              "scheduledStartTime": "2022-09-01T17:15:00",
-              "scheduledEndTime": "2022-09-01T17:30:00"
+              "scheduledStartTime": "2022-09-01T17:19:00",
+              "scheduledEndTime": "2022-09-01T19:30:00"
             },
             "contentDetails": {
               "enableClosedCaptions": true,
