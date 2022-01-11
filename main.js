@@ -24,7 +24,13 @@ function preExe(){
 function execute() {
   if(authStatus != 0 && clientStatus != 0 && titleIn != '' && descriptionIn != '' && dateIn != '' && privacyIn != 'Seleccione la privacidad de la transmisión'){
     console.log('Iniciando petición a la API de youtube.');
-    return gapi.client.youtube.liveBroadcasts.insert({
+
+    var req = '"part": ["snippet,contentDetails,status"],"resource": {"snippet": {"title": "' + titleIn + '", "scheduledStartTime": "' + dateIn + '", "description": "' + descriptionIn + ',},"contentDetails": {  "enableClosedCaptions": true, "enableContentEncryption": true, "enableDvr": true, "enableEmbed": true, "recordFromStart": true, "startWithSlate": true, "enableAutoStart": true}, "status": {"privacyStatus": "' + privacyIn + '", "selfDeclaredMadeForKids": false }}';
+
+
+    return gapi.client.youtube.liveBroadcasts.insert({req})
+
+    /*return gapi.client.youtube.liveBroadcasts.insert({
       "part": [
         "snippet,contentDetails,status"
       ],
@@ -33,11 +39,6 @@ function execute() {
           "title": titleIn,
           "scheduledStartTime": dateIn,
           "description": descriptionIn,
-          "thumbnails": {
-            "standard": {
-              "url": "https://concepto.de/wp-content/uploads/2015/03/paisaje-e1549600034372.jpg"
-            }
-          }
         },
         "contentDetails": {
           "enableClosedCaptions": true,
@@ -53,7 +54,7 @@ function execute() {
           "selfDeclaredMadeForKids": false
         }
       }
-    })
+    })*/
         .then(function(response) {
                 // Handle the results here (response.result has the parsed body).
                 console.log("Response", response);
