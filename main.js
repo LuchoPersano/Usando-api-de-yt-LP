@@ -91,7 +91,7 @@ console.log("JS v1.0.0.1 running");
       "resource": {
         "snippet": {
           "title": "Test broadcast desde mi web",
-          "scheduledStartTime": "2022-01-10T8:00:00",
+          "scheduledStartTime": "2022-01-20T8:00:00",
           "description": "Stream de prueba :D",
           "thumbnails": {
             "standard": {
