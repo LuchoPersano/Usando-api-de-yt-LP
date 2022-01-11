@@ -22,10 +22,10 @@ function preExe(){
 }
 // Make sure the client is loaded and sign-in is complete before calling this method.
 function execute() {
-  if(authStatus != 0 && clientStatus != 0 && titleIn != '' && descriptionIn != '' && dateIn != '' && privacyIn != 'Seleccione la privacidad de la transmisión'){
+  if(authStatus != 0 && clientStatus != 0 && titleIn.value != '' && descriptionIn.value != '' && dateIn.value != '' && privacyIn.value != 'Seleccione la privacidad de la transmisión'){
     console.log('Iniciando petición a la API de youtube.');
 
-    var req = '"part": ["snippet,contentDetails,status"],"resource": {"snippet": {"title": "' + titleIn + '", "scheduledStartTime": "' + dateIn + '", "description": "' + descriptionIn + ',},"contentDetails": {  "enableClosedCaptions": true, "enableContentEncryption": true, "enableDvr": true, "enableEmbed": true, "recordFromStart": true, "startWithSlate": true, "enableAutoStart": true}, "status": {"privacyStatus": "' + privacyIn + '", "selfDeclaredMadeForKids": false }}';
+    var req = '"part": ["snippet,contentDetails,status"],"resource": {"snippet": {"title": "' + titleIn.value + '", "scheduledStartTime": "' + dateIn.value + '", "description": "' + descriptionIn.value + ',},"contentDetails": {  "enableClosedCaptions": true, "enableContentEncryption": true, "enableDvr": true, "enableEmbed": true, "recordFromStart": true, "startWithSlate": true, "enableAutoStart": true}, "status": {"privacyStatus": "' + privacyIn.value + '", "selfDeclaredMadeForKids": false }}';
 
 
     return gapi.client.youtube.liveBroadcasts.insert({req})
