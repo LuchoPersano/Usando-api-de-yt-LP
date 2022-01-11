@@ -26,6 +26,7 @@ function execute() {
     console.log('Iniciando petición a la API de youtube.');
 
     var req = '"part": ["snippet,contentDetails,status"],"resource": {"snippet": {"title": "' + titleIn.value + '", "scheduledStartTime": "' + dateIn.value + '", "description": "' + descriptionIn.value + ',},"contentDetails": {  "enableClosedCaptions": true, "enableContentEncryption": true, "enableDvr": true, "enableEmbed": true, "recordFromStart": true, "startWithSlate": true, "enableAutoStart": true}, "status": {"privacyStatus": "' + privacyIn.value + '", "selfDeclaredMadeForKids": false }}';
+    console.log(req);
 
 
     return gapi.client.youtube.liveBroadcasts.insert({req})
