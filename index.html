@@ -19,13 +19,48 @@
         <p class="header_date">Fecha de comienzo: 9/1/2022</p>
     </header>
     <div class="app-container">
-        <div class="buttons">
-            <button onclick="authenticate().then(loadClient)">load</button>
-            <button onclick="execute()">execute</button>
+        <div class="container">
+            <div class="inputs" id="inputs">
+                <input class="input" type="text" id="title" placeholder="Título">
+                <textarea class="input" name="description" placeholder="Descripción" id="description" cols="30" rows="10"></textarea>
+                <input class="input" type="datetime-local" id="fechayhora">
+                <select class="input" name="privacidad" id="privacidad" onclick="eliminar('borrarOpcion')">
+                    <option id="borrarOpcion">Seleccione la privacidad de la transmisión</option>
+                    <option value="public">Público</option>
+                    <option value="private">Privado</option>
+                    <option value="unlisted">No listado</option>
+                </select>
+            </div>
+            <div class="buttons">
+                <button onclick="authenticate().then(loadClient)">Iniciar sesión</button>
+                <button onclick="execute()">Enviar</button>
+                <button onclick="inputTest()">Imprimir inputs</button>
+            </div>
         </div>
     </div>
 
     <script src="api.js"></script>
+    <script>
+        var titleIn = document.getElementById('title');
+        var descriptionIn = document.getElementById('description');
+        var dateIn = document.getElementById('fechayhora');
+        var privacyIn = document.getElementById('privacidad');
+
+        function inputTest(){
+            console.log('Titulo: ' + titleIn.value);
+            console.log('Descripción: ' + descriptionIn.value);
+            console.log('Fecha y hora de comienzo: ' + dateIn.value);
+            console.log('Privacidad: ' + privacyIn.value)
+        }
+
+        function eliminar(elementId){
+            var element = document.getElementById(elementId);
+            if(!element){} else {
+                var parent = element.parentNode;
+                parent.removeChild(element);
+            }
+        }
+    </script>
     <script src="main.js"></script>
 </body>
 </html>
