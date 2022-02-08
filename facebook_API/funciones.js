@@ -11,11 +11,10 @@ function verifyLoginStatus(){
     if(loginStatus != 'connected'){
         loginBtn.removeAttribute('disabled');
         logoutBtn.setAttribute('disabled', '');
-        loginBtn.innerHTML = 'Iniciar Sesión';
+        loginBtn.innerHTML = 'Iniciar Sesión con facebook';
     } else {
         logoutBtn.removeAttribute('disabled');
         loginBtn.innerHTML = 'Sesión iniciada correctamente :)'
-        loginBtn.insertAdjacentHTML('afterend', '<button class="get-login-status-btn" id="getLoginStatusBtn" onclick="getLoginStatus()">Consultar estado de inicio de sesión</button>')
     }
 }
 
@@ -27,7 +26,6 @@ function login(){
             loginBtn.setAttribute('disabled', '');
             logoutBtn.removeAttribute('disabled');
             loginBtn.innerHTML = 'Sesión iniciada correctamente :)'
-            loginBtn.insertAdjacentHTML('afterend', '<button class="get-login-status-btn" id="getLoginStatusBtn" onclick="getLoginStatus()">Consultar estado de inicio de sesión</button>')
         } else {
             logoutBtn.setAttribute('disabled', '');
         }
