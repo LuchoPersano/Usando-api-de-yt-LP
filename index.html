@@ -51,6 +51,9 @@
             console.log('Descripción: ' + descriptionIn.value);
             console.log('Fecha y hora de comienzo: ' + dateIn.value);
             console.log('Privacidad: ' + privacyIn.value)
+
+            var req = `\"part\": [\"snippet,contentDetails,status\"],\"resource\": {\"snippet\": {\"title\": \"' + titleIn + '\", \"scheduledStartTime\": \"' + dateIn + '", "description": `;
+            console.log(req);
         }
 
         function eliminar(elementId){
