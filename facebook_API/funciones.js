@@ -35,7 +35,15 @@ function login(){
 function logout(){
     consoleLog('Se solicitó cerrar sesión...')
     FB.logout(function(response){
-        consoleLog('Respuesta del servidor:');
         consoleLog(response);
-    })
+        loginStatus = response.status;
+    });
+    if(loginStatus != 'connected'){
+        loginBtn.removeAttribute('disabled');
+        logoutBtn.setAttribute('disabled', '');
+        loginBtn.innerHTML = 'Iniciar Sesión con facebook';
+    } else {
+        logoutBtn.removeAttribute('disabled');
+        loginBtn.innerHTML = 'Sesión iniciada correctamente :)'
+    }
 }
