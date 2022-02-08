@@ -10,7 +10,10 @@ function verifyLoginStatus(){
     });
     if(loginStatus != 'connected'){
         loginBtn.removeAttribute('disabled');
+        logoutBtn.removeAttribute('disabled');
         loginBtn.innerHTML = 'Iniciar Sesión';
+    } else {
+        logoutBtn.setAttribute('disabled', '');
     }
 }
 
@@ -20,8 +23,19 @@ function login(){
         consoleLog('Resultado del inicio de sesión: ' + response.status);
         if(response.status == 'connected'){
             loginBtn.setAttribute('disabled', '');
+            logoutBtn.removeAttribute('disabled');
             loginBtn.innerHTML = 'Sesión iniciada correctamente :)'
             loginBtn.insertAdjacentHTML('afterend', '<button class="get-login-status-btn" id="getLoginStatusBtn" onclick="getLoginStatus()">Consultar estado de inicio de sesión</button>')
+        } else {
+            logoutBtn.setAttribute('disabled', '');
         }
-    }, {scope: 'email'})
+    }, {scope: 'publish_video'})
+}
+
+function logout(){
+    consoleLog('Se solicitó cerrar sesión...')
+    FB.logout(function(response){
+        consoleLog('Respuesta del servidor:');
+        consoleLog(response);
+    })
 }

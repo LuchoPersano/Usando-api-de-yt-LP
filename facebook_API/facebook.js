@@ -4,6 +4,7 @@ consoleLog('Este es Lucio intentando programar una emisión en directo con la AP
 
 // Declaración de variables
 var loginBtn = document.getElementById('loginBtn');
+var logoutBtn = document.getElementById('logoutBtn');
 var loginStatus = '';
 
 // Verifica si la sesión está iniciada
