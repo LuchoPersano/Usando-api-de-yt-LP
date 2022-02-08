@@ -8,10 +8,5 @@ var loginStatus = '';
 
 // Verifica si la sesión está iniciada
 setTimeout(() => {
-
-    loginStatus = getLoginStatus();
-    if(loginStatus != 'connected'){
-        loginBtn.removeAttribute('disabled')
-    }
-
+    verifyLoginStatus();
 }, 2000);
