@@ -10,10 +10,10 @@ function verifyLoginStatus(){
     });
     if(loginStatus != 'connected'){
         loginBtn.removeAttribute('disabled');
-        logoutBtn.removeAttribute('disabled');
+        logoutBtn.setAttribute('disabled', '');
         loginBtn.innerHTML = 'Iniciar Sesión';
     } else {
-        logoutBtn.setAttribute('disabled', '');
+        logoutBtn.removeAttribute('disabled');
     }
 }
 
