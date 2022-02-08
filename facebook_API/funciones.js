@@ -12,5 +12,7 @@ function getLoginStatus(){
 }
 
 function login(){
-    consoleLog('Boton presionado');
+    FB.login(function(response){
+        consoleLog(response);
+    }, {scope: 'email'})
 }
