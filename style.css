@@ -58,3 +58,17 @@ div.buttons{
 div.buttons *{
     margin: 0 3px;
 }
+
+
+/* Link a la sección de Facebook */
+.fblink{
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+}
+
+.fblink a{
+    padding: 8px 20px;
+    background: rgb(108, 147, 255);
+    border-radius: 10px;
+}
