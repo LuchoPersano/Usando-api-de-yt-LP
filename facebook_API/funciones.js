@@ -14,6 +14,8 @@ function verifyLoginStatus(){
         loginBtn.innerHTML = 'Iniciar Sesión';
     } else {
         logoutBtn.removeAttribute('disabled');
+        loginBtn.innerHTML = 'Sesión iniciada correctamente :)'
+        loginBtn.insertAdjacentHTML('afterend', '<button class="get-login-status-btn" id="getLoginStatusBtn" onclick="getLoginStatus()">Consultar estado de inicio de sesión</button>')
     }
 }
 
