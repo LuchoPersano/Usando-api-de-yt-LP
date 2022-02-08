@@ -19,11 +19,11 @@
               xfbml      : true,
               version    : '13.0'
             });
-              
+
             FB.AppEvents.logPageView();   
-              
+
         };
-        
+
         (function(d, s, id){
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) {return;}
@@ -32,8 +32,12 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
+
+
+
     <h1>Api de facebook</h1>
     <p>By Lucio Persano</p>
+    <button class="login-btn" id="loginBtn" disabled>Iniciar sesión con Facebook</button>
 
     <script src="facebook.js"></script>
 </body>
