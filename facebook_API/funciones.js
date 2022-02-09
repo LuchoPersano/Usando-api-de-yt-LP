@@ -53,14 +53,14 @@ function logout(){
     });
 }
 
-function stream(replace){
+function stream(data){
     consoleLog('Solicitando programar emisión en directo...')
-    if(replace == true){
-        imgData = imgData.replace('data:', '');
-    }
+    // if(replace == true){
+    //     imgData = imgData.replace('data:', '');
+    // }
     fetch('https://graph.facebook.com/v13.0/103263762285689/live_videos?planned_start_time=1644429600&status=SCHEDULED_LIVE&title=Este+es+el+titulo&schedule_custom_profile_image=' + imgData + '&description=EstaLaDescripcion&access_token=' + pageAccessToken, { 
         method: 'POST',
-        mode: 'no-cors'
+        mode: data
     })
         .then(response => response.json())
         .then(data => {
