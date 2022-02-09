@@ -20,9 +20,9 @@ function verifyLoginStatus(){
 
 function login(){
     FB.login(function(response){
-        // consoleLog(response);
         consoleLog('Resultado del inicio de sesión: ' + response.status);
         if(response.status == 'connected'){
+            accessToken = response.accessToken;
             loginBtn.setAttribute('disabled', '');
             logoutBtn.removeAttribute('disabled');
             loginBtn.innerHTML = 'Sesión iniciada correctamente :)'
@@ -37,13 +37,21 @@ function logout(){
     FB.logout(function(response){
         consoleLog(response);
         loginStatus = response.status;
+        if(loginStatus != 'connected'){
+            loginBtn.removeAttribute('disabled');
+            logoutBtn.setAttribute('disabled', '');
+            loginBtn.innerHTML = 'Iniciar Sesión con facebook';
+        } else {
+            logoutBtn.removeAttribute('disabled');
+            loginBtn.innerHTML = 'Sesión iniciada correctamente :)'
+        }
     });
-    if(loginStatus != 'connected'){
-        loginBtn.removeAttribute('disabled');
-        logoutBtn.setAttribute('disabled', '');
-        loginBtn.innerHTML = 'Iniciar Sesión con facebook';
-    } else {
-        logoutBtn.removeAttribute('disabled');
-        loginBtn.innerHTML = 'Sesión iniciada correctamente :)'
-    }
+}
+
+function stream(){
+    fetch('https://graph.facebook.com/v3.3/me/live_videos?status=LIVE_NOW&access_token=' + accessToken, { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+            consoleLog(data);
+        })
 }
