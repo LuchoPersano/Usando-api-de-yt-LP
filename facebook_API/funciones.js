@@ -54,7 +54,7 @@ function logout(){
 }
 
 function stream(){
-    fetch('https://graph.facebook.com/v13.0/103263762285689/live_videos?planned_start_time=1644429600&status=SCHEDULED_LIVE&Este+es+el+titulo&schedule_custom_profile_image=DOG.png&description=EstaLaDescripcion&access_token=' + pageAccessToken, { method: 'POST' })
+    fetch('https://graph.facebook.com/v13.0/103263762285689/live_videos?planned_start_time=1644429600&status=SCHEDULED_LIVE&Este+es+el+titulo&schedule_custom_profile_image=image.jpg&description=EstaLaDescripcion&access_token=' + pageAccessToken, { method: 'POST' })
         .then(response => response.json())
         .then(data => {
             consoleLog(data);
@@ -66,7 +66,7 @@ function getPageAccessToken(){
         .then(response => response.json())
         .then(data => {
             pagesList = data.data; //Por las dudas guardo la lista de páginas en un array global
-            var list = data.dat;
+            var list = data.data;
             var pageObj = list.find(page => page.name == 'Prueba LP');
             pageAccessToken = pageObj.access_token;
             consoleLog('Access Token de la página ' + pageObj.name + ' ha sido obtenido exitosamente.');
