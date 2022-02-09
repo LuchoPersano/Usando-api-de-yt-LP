@@ -8,16 +8,16 @@ function verifyLoginStatus(){
         consoleLog(response);
         loginStatus = response.status;
         accessToken = response.authResponse.accessToken;
+        if(loginStatus != 'connected'){
+            loginBtn.removeAttribute('disabled');
+            logoutBtn.setAttribute('disabled', '');
+            loginBtn.innerHTML = 'Iniciar Sesión con facebook';
+        } else if(loginStatus == 'connected'){
+            logoutBtn.removeAttribute('disabled');
+            loginBtn.innerHTML = 'Sesión iniciada correctamente :)'
+            getPageAccessToken();
+        }
     });
-    if(loginStatus != 'connected'){
-        loginBtn.removeAttribute('disabled');
-        logoutBtn.setAttribute('disabled', '');
-        loginBtn.innerHTML = 'Iniciar Sesión con facebook';
-    } else if(loginStatus == 'connected'){
-        logoutBtn.removeAttribute('disabled');
-        loginBtn.innerHTML = 'Sesión iniciada correctamente :)'
-        getPageAccessToken();
-    }
 }
 
 function login(){
