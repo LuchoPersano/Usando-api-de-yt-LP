@@ -74,10 +74,15 @@ function getPageAccessToken(){
 }
 
 function getImgData(file){
+    consoleLog('Entró a la función');
     var input = file.target;
+
     var reader = new FileReader();
     reader.onload = function(){
-        imgData = reader.result;
-        consoleLog('Miniatura lista');
+      var dataURL = reader.result;
+      imgData = dataURL;
+      consoleLog(dataURL);
+      consoleLog('Imagen OK');
     };
+    reader.readAsDataURL(input.files[0]);
 }
