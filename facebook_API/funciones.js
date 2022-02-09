@@ -7,14 +7,16 @@ function verifyLoginStatus(){
     FB.getLoginStatus(function(response) {
         consoleLog(response);
         loginStatus = response.status;
+        accessToken = response.authResponse.accessToken;
     });
     if(loginStatus != 'connected'){
         loginBtn.removeAttribute('disabled');
         logoutBtn.setAttribute('disabled', '');
         loginBtn.innerHTML = 'Iniciar Sesión con facebook';
-    } else {
+    } else if(loginStatus == 'connected'){
         logoutBtn.removeAttribute('disabled');
         loginBtn.innerHTML = 'Sesión iniciada correctamente :)'
+        getPageAccessToken();
     }
 }
 
@@ -22,8 +24,9 @@ function login(){
     FB.login(function(response){
         consoleLog('Resultado del inicio de sesión: ');
         consoleLog(response);
+        accessToken = response.authResponse.accessToken;
+        loginStatus = response.status;
         if(response.status == 'connected'){
-            accessToken = response.authResponse.accessToken;
             loginBtn.setAttribute('disabled', '');
             logoutBtn.removeAttribute('disabled');
             loginBtn.innerHTML = 'Sesión iniciada correctamente :)'
@@ -51,7 +54,7 @@ function logout(){
 }
 
 function stream(){
-    fetch('https://graph.facebook.com/v13.0/103263762285689/live_videos?planned_start_time=1644429600&privacy=public&status=SCHEDULED&Este+es+el+titulo&description=EstaLaDescripcion&access_token=' + accessToken, { method: 'POST' })
+    fetch('https://graph.facebook.com/v13.0/103263762285689/live_videos?planned_start_time=1644429600&status=SCHEDULED_LIVE&Este+es+el+titulo&description=EstaLaDescripcion&access_token=' + pageAccessToken, { method: 'POST' })
         .then(response => response.json())
         .then(data => {
             consoleLog(data);
@@ -62,6 +65,10 @@ function getPageAccessToken(){
     fetch('https://graph.facebook.com/me/accounts?access_token=' + accessToken)
         .then(response => response.json())
         .then(data => {
-            pagesList = data.data;
+            pagesList = data.data; //Por las dudas guardo la lista de páginas en un array global
+            var list = data.dat;
+            var pageObj = list.find(page => page.name == 'Prueba LP');
+            pageAccessToken = pageObj.access_token;
+            consoleLog('Access Token de la página ' + pageObj.name + ' ha sido obtenido exitosamente.');
         })
 }
