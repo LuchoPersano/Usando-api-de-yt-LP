@@ -9,6 +9,7 @@ var loginStatus = '';
 var accessToken = '';
 var pageAccessToken = '';
 var pagesList = [];
+var imgData = '';
 
 // Verifica si la sesión está iniciada
 setTimeout(() => {
