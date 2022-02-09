@@ -7,6 +7,7 @@ var loginBtn = document.getElementById('loginBtn');
 var logoutBtn = document.getElementById('logoutBtn');
 var loginStatus = '';
 var accessToken = '';
+var pagesList = [];
 
 // Verifica si la sesión está iniciada
 setTimeout(() => {

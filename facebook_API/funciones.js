@@ -20,16 +20,18 @@ function verifyLoginStatus(){
 
 function login(){
     FB.login(function(response){
-        consoleLog('Resultado del inicio de sesión: ' + response.status);
+        consoleLog('Resultado del inicio de sesión: ');
+        consoleLog(response);
         if(response.status == 'connected'){
-            accessToken = response.accessToken;
+            accessToken = response.authResponse.accessToken;
             loginBtn.setAttribute('disabled', '');
             logoutBtn.removeAttribute('disabled');
             loginBtn.innerHTML = 'Sesión iniciada correctamente :)'
         } else {
             logoutBtn.setAttribute('disabled', '');
         }
-    }, {scope: 'publish_video'})
+        getPageAccessToken();
+    }, {scope: 'publish_video, pages_manage_posts, pages_read_engagement, pages_read_user_content, pages_show_list'})
 }
 
 function logout(){
@@ -49,9 +51,17 @@ function logout(){
 }
 
 function stream(){
-    fetch('https://graph.facebook.com/v3.3/me/live_videos?status=LIVE_NOW&access_token=' + accessToken, { method: 'POST' })
+    fetch('https://graph.facebook.com/v13.0/103263762285689/live_videos?planned_start_time=1644429600&privacy=public&status=SCHEDULED&Este+es+el+titulo&description=EstaLaDescripcion&access_token=' + accessToken, { method: 'POST' })
         .then(response => response.json())
         .then(data => {
             consoleLog(data);
+        })
+}
+
+function getPageAccessToken(){
+    fetch('https://graph.facebook.com/me/accounts?access_token=' + accessToken)
+        .then(response => response.json())
+        .then(data => {
+            pagesList = data.data;
         })
 }
