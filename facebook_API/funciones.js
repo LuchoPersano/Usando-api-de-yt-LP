@@ -68,6 +68,15 @@ function stream(data){
         })
 }
 
+function postEvent(){
+    consoleLog('Creando evento en facebook...')
+    fetch('https://graph.facebook.com/v13.0/103263762285689/event?acces_token=' + pageAccessToken, { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+            consoleLog(data);
+        })
+}
+
 function getPageAccessToken(){
     fetch('https://graph.facebook.com/me/accounts?access_token=' + accessToken)
         .then(response => response.json())
