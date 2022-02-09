@@ -84,5 +84,6 @@ function getImgData(file){
       consoleLog(dataURL);
       consoleLog('Imagen OK');
     };
-    reader.readAsDataURL(input.files[0]);
+    // reader.readAsDataURL(input.files[0]);
+    reader.readAsBinaryString(input.files[0]);
 }
