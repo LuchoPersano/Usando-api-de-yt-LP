@@ -52,31 +52,7 @@ function execute() {
     };
     console.log(req);
 
-    return gapi.client.youtube.liveBroadcasts.insert({
-      "part": [
-        "snippet,contentDetails,status"
-      ],
-      "resource": {
-        "snippet": {
-          "title": titleIn.value,
-          "scheduledStartTime": dateIn.value,
-          "description": descriptionIn.value,
-        },
-        "contentDetails": {
-          "enableClosedCaptions": true,
-          "enableContentEncryption": true,
-          "enableDvr": true,
-          "enableEmbed": true,
-          "recordFromStart": true,
-          "startWithSlate": true,
-          "enableAutoStart": true
-        },
-        "status": {
-          "privacyStatus": privacyIn.value,
-          "selfDeclaredMadeForKids": false
-        }
-      }
-    })
+    return gapi.client.youtube.liveBroadcasts.insert(req)
         .then(function(response) {
                 // Handle the results here (response.result has the parsed body).
                 console.log("Response", response);
