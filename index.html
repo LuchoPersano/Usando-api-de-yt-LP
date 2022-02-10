@@ -23,6 +23,7 @@
             <div class="inputs" id="inputs">
                 <input class="input" type="text" id="title" placeholder="Título">
                 <textarea class="input" name="description" placeholder="Descripción" id="description" cols="30" rows="10"></textarea>
+                <input class="input" name="thumbnail" id="thumbnail" type="file" onchange="getImgData(event)">
                 <input class="input" type="datetime-local" id="fechayhora">
                 <select class="input" name="privacidad" id="privacidad" onclick="eliminar('borrarOpcion')">
                     <option id="borrarOpcion">Seleccione la privacidad de la transmisión</option>
@@ -34,7 +35,6 @@
             <div class="buttons">
                 <button onclick="authenticate().then(loadClient)">Iniciar sesión</button>
                 <button onclick="execute()">Enviar</button>
-                <button onclick="inputTest()">Imprimir inputs</button>
             </div>
         </div>
     </div>
@@ -44,30 +44,7 @@
     </div>
 
     <script src="api.js"></script>
-    <script>
-        var titleIn = document.getElementById('title');
-        var descriptionIn = document.getElementById('description');
-        var dateIn = document.getElementById('fechayhora');
-        var privacyIn = document.getElementById('privacidad');
-
-        function inputTest(){
-            console.log('Titulo: ' + titleIn.value);
-            console.log('Descripción: ' + descriptionIn.value);
-            console.log('Fecha y hora de comienzo: ' + dateIn.value);
-            console.log('Privacidad: ' + privacyIn.value)
-
-            var req = `\"part\": [\"snippet,contentDetails,status\"],\"resource\": {\"snippet\": {\"title\": \"' + titleIn + '\", \"scheduledStartTime\": \"' + dateIn + '", "description": `;
-            console.log(req);
-        }
-
-        function eliminar(elementId){
-            var element = document.getElementById(elementId);
-            if(!element){} else {
-                var parent = element.parentNode;
-                parent.removeChild(element);
-            }
-        }
-    </script>
+    <script src="funciones.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
