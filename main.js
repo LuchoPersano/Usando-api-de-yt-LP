@@ -5,6 +5,7 @@ console.log("JS v1.0.0.1 running");
 //Variables globales
 var authStatus = 0;
 var clientStatus = 0;
+var req;
 var insertResponse = '';
 var titleIn = document.getElementById('title');
 var descriptionIn = document.getElementById('description');

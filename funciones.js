@@ -38,52 +38,65 @@ function execute() {
   if(authStatus != 0 && clientStatus != 0 && titleIn.value != '' && descriptionIn.value != '' && dateIn.value != '' && privacyIn.value != 'Seleccione la privacidad de la transmisión' && imgData != ''){
     console.log('Iniciando petición a la API de youtube.');
     console.log('Petición:');
-    var req = {
-      "part": [
-        "snippet,contentDetails,status"
-      ],
-      "resource": {
-        "snippet": {
-          "title": titleIn.value,
-          "scheduledStartTime": dateIn.value,
-          "description": descriptionIn.value,
-          "thumbnails": {
-              "high": {
-                  "url": imgData,
-                  "width": 1920,
-                  "height": 1080
+    req = {
+        "part": [
+          "snippet,contentDetails,status"
+        ],
+        "resource": {
+          "snippet": {
+            "title": titleIn.value,
+            "scheduledStartTime": dateIn.value,
+            "description": descriptionIn.value,
+            "thumbnails": {
+                "high": {
+                    "url": imgData,
+                    "width": 1920,
+                    "height": 1080
+                },
+                "default": {
+                    "url": imgData,
+                    "width": 1920,
+                    "height": 1080
+                },
+                "medium": {
+                    "url": imgData,
+                    "width": 1920,
+                    "height": 1080
               }
+            }
+          },
+          "contentDetails": {
+            "enableClosedCaptions": false,
+            "enableContentEncryption": true,
+            "enableDvr": true,
+            "enableEmbed": true,
+            "recordFromStart": true,
+            "startWithSlate": true,
+            "enableAutoStart": true,
+            "enableAutoStop": false
+          },
+          "status": {
+            "privacyStatus": privacyIn.value,
+            "selfDeclaredMadeForKids": false
           }
-        },
-        "contentDetails": {
-          "enableClosedCaptions": false,
-          "enableContentEncryption": true,
-          "enableDvr": true,
-          "enableEmbed": true,
-          "recordFromStart": true,
-          "startWithSlate": true,
-          "enableAutoStart": true,
-          "enableAutoStop": false
-        },
-        "status": {
-          "privacyStatus": privacyIn.value,
-          "selfDeclaredMadeForKids": false
         }
-      }
-    };
+      };
     console.log(req);
 
     return gapi.client.youtube.liveBroadcasts.insert(req)
         .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                if(response.status == 200){
-                  console.log("Response" + response.result);
-                  insertResponse = response.result;
-                } else {
-                  console.log('Response:' + response)
-                  insertResponse = response;
-                }
-              },
+            // Handle the results here (response.result has the parsed body).
+            console.log("Response:");
+            console.log(response.result);
+            insertResponse = response;
+
+            var win = window.open('https://studio.youtube.com/video/' + response.result.id + '/livestreaming/');
+            if(win){
+                win.focus();
+            } else {
+                alert('Error abriendo el link para ver la transmisión');
+            }
+            },
               function(err) { console.error("Execute error", err); });
 
   } else if(authStatus == 0 || clientStatus == 0){
@@ -96,3 +109,32 @@ function execute() {
 gapi.load("client:auth2", function() {
   gapi.auth2.init({client_id: "38164434341-tiliciovo1hrej80rr815k4bq59fi09g.apps.googleusercontent.com"});
 });
+
+var updateReq;
+var updateResponse;
+function update(){
+    updateReq = {
+        "part": [
+            "snippet,id"
+        ],
+        "id": insertResponse.id,
+        "snippet": {
+            "title": "Nuevo titulo :)",
+            "scheduledStartTime": dateIn.value,
+            "description": descriptionIn.value,
+            "thumbnails": {
+                "default": {
+                    "url": "https://gestordestreamslucio.netlify.app/facebook_api/DOG.png",
+                    "width": 468,
+                    "height": 625
+                }
+            }
+        }
+    }
+    return gapi.client.youtube.liveBroadcasts.update(updateReq)
+        .then(function(response) {
+            console.log('Respuesta: ', response);
+            updateResponse = response;
+        },
+        function(err) { console.error("Error", err); })
+}
