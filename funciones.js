@@ -35,10 +35,13 @@ function loadClient() {
 
 function subirThumbnail() {
     var tReq = {
-        "default": {
-            "url": imgData,
-            "width": 1920,
-            "height": 1080
+        "videoId": "mx_LoHEO6w8",
+        "thumbnails"{
+            "default": {
+                "url": imgData,
+                "width": 1920,
+                "height": 1080
+            }
         }
     }
 
