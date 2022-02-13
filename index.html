@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="authenticate().then(loadClient())">
     <header>
         <h1 class="header_title">Probando API de Youtube</h1>
         <p class="header_description">By: Lucio Persano</p>

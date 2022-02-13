@@ -36,18 +36,18 @@ function execute() {
             "thumbnails": {
                 "high": {
                     "url": thumbnailIn.value,
-                    "width": 1920,
-                    "height": 1080
+                    "width": 480,
+                    "height": 360
                 },
                 "default": {
                     "url": thumbnailIn.value,
-                    "width": 1920,
-                    "height": 1080
+                    "width": 120,
+                    "height": 90
                 },
                 "medium": {
                     "url": thumbnailIn.value,
-                    "width": 1920,
-                    "height": 1080
+                    "width": 320,
+                    "height": 180
               }
             }
           },
@@ -76,7 +76,7 @@ function execute() {
             console.log(response.result);
             insertResponse = response;
 
-            var win = window.open('https://studio.youtube.com/video/' + response.result.id + '/livestreaming/');
+            var win = window.open('https://youtu.be' + response.result.id);
             if(win){
                 win.focus();
             } else {

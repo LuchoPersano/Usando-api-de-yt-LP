@@ -14,4 +14,3 @@ var privacyIn = document.getElementById('privacidad');
 var thumbnailIn = document.getElementById('thumbnail');
 
 // Iniciar sesión al abrir la página
-authenticate().then(loadClient());
