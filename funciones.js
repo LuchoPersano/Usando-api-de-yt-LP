@@ -6,20 +6,6 @@ function eliminar(elementId){
     }
 }
 
-function getImgData(file){
-    var input = file.target;
-    var reader = new FileReader();
-    reader.onload = function(){
-      var dataURL = reader.result;
-      imgData = dataURL;
-      console.log(dataURL);
-      console.log('Imagen OK');
-    };
-    reader.readAsDataURL(input.files[0]);
-    console.log('Loading thumbnail data')
-}
-
-
 // Comunicating with te YT API
 
 function authenticate() {
@@ -35,7 +21,7 @@ function loadClient() {
 }
 // Make sure the client is loaded and sign-in is complete before calling this method.
 function execute() {
-  if(authStatus != 0 && clientStatus != 0 && titleIn.value != '' && descriptionIn.value != '' && dateIn.value != '' && privacyIn.value != 'Seleccione la privacidad de la transmisión' && imgData != ''){
+  if(authStatus != 0 && clientStatus != 0 && titleIn.value != '' && descriptionIn.value != '' && dateIn.value != '' && privacyIn.value != 'Seleccione la privacidad de la transmisión' && thumbnailIn.value != ''){
     console.log('Iniciando petición a la API de youtube.');
     console.log('Petición:');
     req = {
@@ -49,17 +35,17 @@ function execute() {
             "description": descriptionIn.value,
             "thumbnails": {
                 "high": {
-                    "url": imgData,
+                    "url": thumbnailIn.value,
                     "width": 1920,
                     "height": 1080
                 },
                 "default": {
-                    "url": imgData,
+                    "url": thumbnailIn.value,
                     "width": 1920,
                     "height": 1080
                 },
                 "medium": {
-                    "url": imgData,
+                    "url": thumbnailIn.value,
                     "width": 1920,
                     "height": 1080
               }
