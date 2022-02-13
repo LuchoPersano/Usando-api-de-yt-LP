@@ -11,6 +11,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="https://icones.pro/wp-content/uploads/2021/04/icone-cercle-rempli-bleu.png" type="image/x-icon">
 </head>
 <body onload="authenticate().then(loadClient())">
     <header>
@@ -23,7 +24,7 @@
             <div class="inputs" id="inputs">
                 <input class="input" type="text" id="title" placeholder="Título">
                 <textarea class="input" name="description" placeholder="Descripción" id="description" cols="30" rows="10"></textarea>
-                <input class="input" name="thumbnail" id="thumbnail" type="url">
+                <input class="input" name="thumbnail" id="thumbnail" type="file" onchange="getImgData(event)">
                 <input class="input" type="datetime-local" id="fechayhora">
                 <select class="input" name="privacidad" id="privacidad" onclick="eliminar('borrarOpcion')">
                     <option id="borrarOpcion">Seleccione la privacidad de la transmisión</option>

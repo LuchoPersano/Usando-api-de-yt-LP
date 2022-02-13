@@ -12,5 +12,6 @@ var descriptionIn = document.getElementById('description');
 var dateIn = document.getElementById('fechayhora');
 var privacyIn = document.getElementById('privacidad');
 var thumbnailIn = document.getElementById('thumbnail');
+var imgData;
 
 // Iniciar sesión al abrir la página

@@ -1,3 +1,17 @@
+function getImgData(file){
+    var input = file.target;
+    // var reader = new FileReader();
+    // reader.onload = function(){
+    //   var dataURL = reader.result;
+    //   imgData = dataURL;
+    //   console.log(dataURL);
+    //   console.log('Imagen OK');
+    // };
+    // reader.readAsDataURL(input.files[0]);
+    console.log('Loading thumbnail data');
+    imgData = input.files[0];
+}
+
 function eliminar(elementId){
     var element = document.getElementById(elementId);
     if(!element){} else {
@@ -35,17 +49,17 @@ function execute() {
             "description": descriptionIn.value,
             "thumbnails": {
                 "high": {
-                    "url": thumbnailIn.value,
+                    "url": imgData,
                     "width": 480,
                     "height": 360
                 },
                 "default": {
-                    "url": thumbnailIn.value,
+                    "url": imgData,
                     "width": 120,
                     "height": 90
                 },
                 "medium": {
-                    "url": thumbnailIn.value,
+                    "url": imgData,
                     "width": 320,
                     "height": 180
               }
@@ -76,7 +90,7 @@ function execute() {
             console.log(response.result);
             insertResponse = response;
 
-            var win = window.open('https://youtu.be' + response.result.id);
+            var win = window.open('https://youtu.be/' + response.result.id);
             if(win){
                 win.focus();
             } else {
