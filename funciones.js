@@ -1,15 +1,14 @@
 function getImgData(file){
     var input = file.target;
-    // var reader = new FileReader();
-    // reader.onload = function(){
-    //   var dataURL = reader.result;
-    //   imgData = dataURL;
-    //   console.log(dataURL);
-    //   console.log('Imagen OK');
-    // };
-    // reader.readAsDataURL(input.files[0]);
+    var reader = new FileReader();
+    reader.onload = function(){
+      var dataURL = reader.result;
+      imgData = dataURL;
+      console.log(dataURL);
+      console.log('Imagen OK');
+    };
+    reader.readAsDataURL(input.files[0]);
     console.log('Loading thumbnail data');
-    imgData = input.files[0];
 }
 
 function eliminar(elementId){
@@ -33,6 +32,23 @@ function loadClient() {
       .then(function() { console.log("GAPI client loaded for API"); clientStatus = 1; },
             function(err) { console.error("Error loading GAPI client for API", err); clientStatus = 0; });
 }
+
+function subirThumbnail() {
+    var tReq = {
+        "default": {
+            "url": imgData,
+            "width": 1920,
+            "height": 1080
+        }
+    }
+
+    return gapi.client.youtube.thumbnails.set(tReq)
+        .then(function(response) {
+            console.log(response)
+        }, function(err) { console.error(err)})
+}
+
+
 // Make sure the client is loaded and sign-in is complete before calling this method.
 function execute() {
   if(authStatus != 0 && clientStatus != 0 && titleIn.value != '' && descriptionIn.value != '' && dateIn.value != '' && privacyIn.value != 'Seleccione la privacidad de la transmisión' && thumbnailIn.value != ''){
